@@ -10,3 +10,6 @@ imgui.ini
 /hosts/NoHost
 
 /.local/
+
+# Generated NuGet packages and symbols
+/artifacts/

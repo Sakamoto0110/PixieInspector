@@ -40,8 +40,9 @@ rules.
 - Keep the assembly count low: a consumer takes the core, one view, and
   PixieLib. A new assembly needs a stated reason.
 - `hosts/NoHost/` is the owner's local test console. It stays versioned and in
-  the solution, and its directory stays in `.gitignore` so local changes do not
-  show; stage its versioned files with `git add -u`.
+  the solution. Its `.gitignore` rule ignores new, untracked files in that
+  directory; edits to its tracked files remain visible in `git status` and can
+  be staged with `git add -u -- hosts/NoHost/`.
 
 ## Build
 
