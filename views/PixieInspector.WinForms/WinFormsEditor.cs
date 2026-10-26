@@ -28,6 +28,7 @@ internal abstract class WinFormsEditor : IDisposable
         null or EditorKind.Header => null,
         EditorKind.Toggle => new ToggleEditor(row),
         EditorKind.Choice => new ChoiceEditor(row),
+        EditorKind.Flags => new FlagsEditor(row),
         EditorKind.Slider => new SliderEditor(row),
         EditorKind.Color => new ColorEditor(row),
         EditorKind.Button => new ButtonEditor(row),

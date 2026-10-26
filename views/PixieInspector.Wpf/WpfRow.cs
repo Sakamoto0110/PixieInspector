@@ -219,6 +219,7 @@ internal sealed class WpfRow : IDisposable
 
     public void Dispose()
     {
+        Editor?.Dispose();
         Scrub?.Dispose();
         WpfInspectorView.Detach(Label);
         WpfInspectorView.Detach(Mark);

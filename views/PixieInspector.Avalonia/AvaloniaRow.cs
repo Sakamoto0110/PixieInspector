@@ -271,6 +271,7 @@ internal sealed class AvaloniaRow : IDisposable
 
     public void Dispose()
     {
+        Editor?.Dispose();
         Scrub?.Dispose();
 
         if (Group != null)
