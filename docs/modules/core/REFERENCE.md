@@ -160,13 +160,14 @@ inspector lives; `Dispose` releases the lock.
 ## Options
 
 Every node carries its options: `Label`, `Tooltip`, `Help`, `Order`,
-`Ignored`, `Visible`, `VisibleWhen`, `ReadOnly`, `Editor`, `Range`, `Choices`,
+`Ignored`, `Visible`, `VisibleWhen`, `ReadOnly`, `Editor`, `Range`, `Choices`, `FlagChoices`,
 `ScrubMultiplier`, `ScrubAxis`, `Unit`, `ArcSpread`, `Expandable`,
 `Collapsed`, and the lists `TextRules` and `ValueRules`. They are set in three layers; each overwrites
 what the one before set.
 
 1. **Reflection** (`ReflectionPolicy`). The label is the member's name. The
-   editor follows the type: an enum is `Choice`, `bool` is `Toggle`, a number
+   editor follows the type: an enum with `[Flags]` is `Flags`, another enum is
+   `Choice`, `bool` is `Toggle`, a number
    is `Number`, a collection is `Selector` (only on a `CollectionNode`;
    elsewhere `Display`), `object` and any type with members are `Display`,
    anything else is `Text`. A `readonly` or `const` field, and a property
@@ -218,8 +219,39 @@ Two option scopes sit beside the nodes:
 
 A real change of a node's option, or of the culture or a layout option, raises
 the inspector's `OptionChanged` (P7.8), so a view built before it can show it.
-Setting `Choices` makes the editor `Choice`; setting `VisibleWhen` reads the
+Setting `Choices` makes the editor `Choice`; setting `FlagChoices` makes it
+`Flags`. Clearing either provider does not reset a manually chosen editor.
+Setting `VisibleWhen` reads the
 rule at once.
+
+## Flags
+
+`EditorKind.Flags` is appended to the editor enum, preserving previous numeric
+values. `FlagChoice(ulong Mask, string Label)` describes an enum constant or an
+integral storage mask. `InspectorNode.FlagChoices` optionally supplies a runtime
+sequence; `GetFlags()` snapshots it when a view opens its popup. Otherwise an
+enum supplies all named constants, including zero, aliases and composites.
+The supported storage types are the eight signed/unsigned 8/16/32/64-bit
+integers and enums based on them, including nullable forms. A mask outside that
+width is rejected; signed negative constants use their bit representation in
+that width. Integral flag masks do not support display units or label scrubbing.
+
+`GetFlagState(mask)` reads held/pending values without calling getters: true
+when all bound values contain the full mask, false when none contain any of
+it, null for mixed values, a partial composite, null or unavailable values.
+For zero, true means every value is zero. `SetFlag(mask, enabled)` changes only
+that mask in each object's own held value through `SetValues`, preserving other
+and unknown bits. Selecting zero explicitly clears the whole value; deselecting
+zero is a no-op. Null starts at zero on an explicit edit. Read-only/compromised
+nodes and failed value reads refuse edits through the existing binder guards.
+Pending edits compose and wait for `Apply()` under manual binder control.
+
+Normal conversion, value rules and notifications still apply. All values
+prepare before any write; as with other edits, a throwing setter can leave
+earlier objects written. A failing/invalid label provider reports `Recovered`
+and supplies no partial list; a successful retry clears only that provider's
+failure, preserving a prior getter or write failure. See the
+[flags guide](../../flags-editor.md) for host integration and scope boundaries.
 
 ## Binding
 
@@ -445,8 +477,6 @@ units in WPF); a negative length or a non-number throws.
 ## Non-goals and edge cases
 
 - No paging, no service locator, and no compatibility with the 0.7.1a API.
-- A `[Flags]` enum is a single-choice list of its defined values
-  ([PXI-PROPOSAL-007](../../proposals/flags-enum-editor.md)).
 - `ValueChangedEventArgs` carries no previous value
   ([PXI-PROPOSAL-008](../../proposals/previous-value-in-value-changed.md)).
 - A proxy property that returns a new class object on every read looks like

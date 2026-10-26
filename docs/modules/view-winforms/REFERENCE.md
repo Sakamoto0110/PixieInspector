@@ -76,6 +76,7 @@ The editor comes from `ViewRules.KindFor(node)`, shared with the other views.
 | `Slider` | A track bar over `Range`; its positions go by the step, or a hundred with no step | While it is dragged |
 | `Toggle` | A check box | At once |
 | `Choice` | A combo box filled from `GetChoices()` when it opens or takes the focus (P6.3) | At once |
+| `Flags` | A button opening a checked menu from `GetFlags()`; mixed bits show indeterminate | `SetFlag()` per click, preserving each object's other bits |
 | `Color` | A button painted with the color, which opens the system's `ColorDialog` | When the dialog closes with OK; the dialog has no alpha, so the alpha stays |
 | `Selector` | A combo box with the collection's items | Sets `SelectedIndex` |
 | `List` | A list box of the items and four buttons on the line below | The core's list operations, at once (P5.13) |

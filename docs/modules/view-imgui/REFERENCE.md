@@ -103,6 +103,7 @@ The editor comes from `ViewRules.KindFor(node)`, shared with the other views.
 | `Arc` | A dial with the sector of the center (the node) and the width (its `ArcSpread` sibling), and a number field for each beside it, in each node's `Unit` with its suffix. Dragging on the dial turns the center to the mouse; with Shift, it opens or closes the width around the center. Angles go counterclockwise from the right, with y up. With objects that hold different values, the dial and the fields show the first object's | While it is dragged, and as the fields are typed; a change sets the same value in every object |
 | `Toggle` | A check box | At once |
 | `Choice` | A combo box filled from `GetChoices()` when it opens (P6.3) | At once |
+| `Flags` | A popup of named checkbox masks from `GetFlags()` on opening; mixed bits show indeterminate | `SetFlag()` per click, preserving each object's other bits |
 | `Color` | ImGui's color field: a swatch that opens a picker, and the RGBA inputs | While it is dragged; channels from 0 to 1, rounded to bytes |
 | `Selector` | A combo box with the collection's items | Sets `SelectedIndex`, which is not an edit, so it works on a read-only collection |
 | `List` | A list box of the items, up to `ListRows` lines, and four buttons: add, remove, up, down | The core's list operations, at once (P5.13) |

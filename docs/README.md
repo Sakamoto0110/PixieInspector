@@ -31,11 +31,12 @@ the code, read the [development guide](development.md).
 | [`../TASKLIST.md`](../TASKLIST.md) | Task breakdowns of promoted work |
 | [`../DEPENDENCIES.md`](../DEPENDENCIES.md) | Dependencies, versions, status, and candidates |
 | [`development.md`](development.md) | Building, checking, and committing a change |
+| [`flags-editor.md`](flags-editor.md) | Enum flags, runtime-named masks, multi-edit and native-host integration |
 | [`modules/`](#modules) | One directory per boundary: the core and each view |
 | [`governance/`](governance/documentation-policy.md) | Documentation rules |
 | [`schemas/`](schemas/README.md) | Documentation structure and vocabulary, and its derivation |
 | [`templates/`](templates/) | Templates for modules, schedulers, proposals, and archive records |
-| [`proposals/`](proposals/README.md) | Unpromoted ideas |
+| [`proposals/`](proposals/README.md) | Proposals and their outcomes |
 | [`archive/`](archive/README.md) | Chronology, completed work, dated rationale, and the documents written before the policy |
 
 ## Modules
