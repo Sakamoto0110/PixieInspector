@@ -51,7 +51,7 @@ internal static class ReflectionPolicy
         type = Nullable.GetUnderlyingType(type) ?? type;
 
         if (type.IsEnum)
-            return EditorKind.Choice;
+            return type.IsDefined(typeof(FlagsAttribute), inherit: false) ? EditorKind.Flags : EditorKind.Choice;
 
         if (type == typeof(bool))
             return EditorKind.Toggle;

@@ -22,20 +22,24 @@
 
 ## PXI-PROPOSAL-007
 
-**State:** idea
+**State:** completed as [PXI-TODO-002](../archive/flags-editor-2026-10-26.md) on 2026-10-26
 
 **Idea:** An editor for `[Flags]` enums that sets and clears each bit, chosen by
 the reflection layer when the enum type carries `FlagsAttribute`.
 
-**Rationale:** A `[Flags]` enum is shown today as a single-choice list of its
-defined values, so a combination of bits can be neither picked nor shown as one
-of the choices. Verified on 2026-10-12: neither the core nor any view looks at
+**Rationale at the original baseline:** A `[Flags]` enum was shown as a single-choice list of its
+defined values, so a combination of bits could be neither picked nor shown as one
+of the choices. Verified on 2026-10-12: neither the core nor any view looked at
 `FlagsAttribute`. Engines often keep layers and render options as flags.
 
-**Constraints:** Whether PixieEngine has flags enums is not known yet. A new
-editor kind is a public API change and needs a decision for each view.
+**Accepted extension:** The owner selected both `[Flags]` enums and integral
+masks with runtime-provided names, covering the native Engine's collision
+layers and debug masks. All four views gain the same editing contract. Unknown
+bits and per-object differences must survive unrelated bit edits.
 
-**Promotion target:** owner decision required
+**Constraints:** This is a generic editor; the host supplies native names and
+values. Physics, scene synchronization and viewport tools remain outside the
+inspector. Package publication is a separate release action.
 
 **Source:** owner discussion of the PixieEngine editor on 2026-10-11 and
 2026-10-12, recorded in

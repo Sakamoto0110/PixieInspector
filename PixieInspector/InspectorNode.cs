@@ -12,7 +12,7 @@ namespace PixieInspector;
 
 // A node of the tree. The getter is the same for every kind of node, and each kind decides what
 // writing means: a member writes, the root refuses.
-public abstract class InspectorNode : IEnumerable<InspectorNode>, IDisposable
+public abstract partial class InspectorNode : IEnumerable<InspectorNode>, IDisposable
 {
     private readonly List<InspectorNode> Children = [];
 

@@ -63,6 +63,7 @@ The editor comes from `ViewRules.KindFor(node)`, shared with the other views.
 | `Slider` | A slider over `Range`, in double, stopping on the step, with the value as text beside it | While it is dragged |
 | `Toggle` | A check box; a nullable `bool` gets the third state, for null | At once |
 | `Choice` | A combo box filled from `GetChoices()` whenever it opens (P6.3) | At once |
+| `Flags` | A button opening a flyout of named checkboxes from `GetFlags()`; mixed bits show indeterminate | `SetFlag()` per click, preserving each object's other bits |
 | `Color` | A swatch with the color's code; a click opens a flyout with a slider per channel, alpha included | While the sliders move |
 | `Selector` | A combo box with the collection's items, on top of the collection's group | Sets `SelectedIndex` |
 | `List` | A list box of the items, up to `ListRows` lines, and four buttons under it | The core's list operations, at once (P5.13) |

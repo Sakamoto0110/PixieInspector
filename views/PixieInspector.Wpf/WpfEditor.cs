@@ -6,7 +6,7 @@ using PixieInspector.Options;
 namespace PixieInspector.Wpf;
 
 // The control of one editor (P7.9), shown and written through its row.
-internal abstract class WpfEditor
+internal abstract class WpfEditor : IDisposable
 {
     // The background of an editor whose node failed (P7.11).
     protected static readonly SolidColorBrush FailedBrush = WpfInspectorView.Frozen(Color.FromRgb(255, 224, 224));
@@ -32,6 +32,7 @@ internal abstract class WpfEditor
         null or EditorKind.Header => null,
         EditorKind.Toggle => new ToggleEditor(row),
         EditorKind.Choice => new ChoiceEditor(row),
+        EditorKind.Flags => new FlagsEditor(row),
         EditorKind.Slider => new SliderEditor(row),
         EditorKind.Color => new ColorEditor(row),
         EditorKind.Button => new ButtonEditor(row),
@@ -52,6 +53,8 @@ internal abstract class WpfEditor
     }
 
     public abstract void ShowValue();
+
+    public virtual void Dispose() { }
 
     // Most editors are fields of their own color over the row's background, which shows the row under
     // the mouse by itself.

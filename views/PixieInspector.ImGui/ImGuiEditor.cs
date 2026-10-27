@@ -33,6 +33,7 @@ internal abstract class ImGuiEditor
         EditorKind.Number => new NumberEditor(row),
         EditorKind.Toggle => new ToggleEditor(row),
         EditorKind.Choice => new ChoiceEditor(row),
+        EditorKind.Flags => new FlagsEditor(row),
         EditorKind.Slider => new SliderEditor(row),
         EditorKind.Arc => new ArcEditor(row),
         EditorKind.Color => new ColorEditor(row),
