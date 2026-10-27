@@ -4,7 +4,7 @@ using PixieInspector.Options;
 namespace PixieInspector.Avalonia;
 
 // The control of one editor (P7.9), shown and written through its row.
-internal abstract class AvaloniaEditor
+internal abstract class AvaloniaEditor : IDisposable
 {
     protected AvaloniaEditor(AvaloniaRow row)
     {
@@ -33,6 +33,7 @@ internal abstract class AvaloniaEditor
         EditorKind.Number when NumberEditor.Fits(row.Node.ViewType) => new NumberEditor(row),
         EditorKind.Toggle => new ToggleEditor(row),
         EditorKind.Choice => new ChoiceEditor(row),
+        EditorKind.Flags => new FlagsEditor(row),
         EditorKind.Slider => new SliderEditor(row),
         EditorKind.Color => new ColorEditor(row),
         EditorKind.Button => new ButtonEditor(row),
@@ -44,6 +45,8 @@ internal abstract class AvaloniaEditor
     };
 
     public abstract void ShowValue();
+
+    public virtual void Dispose() { }
 
     public virtual void ShowState(bool readOnly, bool enabled)
     {

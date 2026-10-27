@@ -24,4 +24,7 @@ public enum EditorKind
     // An angle and the width of an arc around it, edited together: the node is the center, and its
     // ArcSpread names the sibling with the width, both in radians. A view that draws no arc shows a number.
     Arc,
+
+    // Named bits of an enum or integral mask; appended to preserve existing numeric values.
+    Flags,
 }

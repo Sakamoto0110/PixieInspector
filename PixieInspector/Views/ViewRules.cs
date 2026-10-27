@@ -32,7 +32,7 @@ internal static class ViewRules
     // Whether a node scrubs now: a number with a ScrubMultiplier, which can be written.
     public static bool CanScrub(InspectorNode node)
     {
-        return !node.IsGroup && node.ScrubMultiplier is { } multiplier && multiplier != 0 && IsNumber(node.ValueType)
+        return !node.IsGroup && node.Editor != EditorKind.Flags && node.ScrubMultiplier is { } multiplier && multiplier != 0 && IsNumber(node.ValueType)
             && !node.ReadOnly && !node.IsCompromised;
     }
 
@@ -40,7 +40,7 @@ internal static class ViewRules
     // value of its own; the objects behind a group or a collection are always different ones.
     public static bool ShowsMixed(EditorKind? kind, InspectorNode node)
     {
-        return kind is EditorKind.Text or EditorKind.Number or EditorKind.Toggle or EditorKind.Choice
+        return kind is EditorKind.Text or EditorKind.Number or EditorKind.Toggle or EditorKind.Choice or EditorKind.Flags
             or EditorKind.Slider or EditorKind.Color or EditorKind.Arc or EditorKind.Display && node.IsMixed;
     }
 
