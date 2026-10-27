@@ -55,6 +55,11 @@ window, the hover background, the tooltips and failures, the editors, the
 mixed values, scrubbing, the escape valves, `RowFailed`, and the UI thread
 holds here, with these differences:
 
+- **Flags.** The button opens a menu of named checkbox masks. A click can keep
+  the menu open; states refresh after the edit. Popups close when editing is
+  disabled or the row/view is disposed. The core's per-object mask semantics
+  are shared with every view.
+
 - **Slider.** A WPF slider counts in double, so it takes the range as it is,
   stopping on the step when there is one.
 - **Color.** WPF has no color dialog of its own, so the color button opens the

@@ -39,5 +39,5 @@ The first eight came from the owner's discussion of the PixieEngine editor on
 | [`manual-add-without-warning.md`](manual-add-without-warning.md) | PXI-PROPOSAL-004 | idea | Owner decision required |
 | [`imgui-view-id-scope.md`](imgui-view-id-scope.md) | PXI-PROPOSAL-005 | idea | Owner decision required |
 | [`reference-drop-extension.md`](reference-drop-extension.md) | PXI-PROPOSAL-006 | idea | Owner decision required |
-| [`flags-enum-editor.md`](flags-enum-editor.md) | PXI-PROPOSAL-007 | idea | Owner decision required |
+| [`flags-enum-editor.md`](flags-enum-editor.md) | PXI-PROPOSAL-007 | completed | [PXI-TODO-002 completion](../archive/flags-editor-2026-10-26.md) |
 | [`previous-value-in-value-changed.md`](previous-value-in-value-changed.md) | PXI-PROPOSAL-008 | idea | Owner decision required |

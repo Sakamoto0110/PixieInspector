@@ -20,7 +20,7 @@
 
 **Indexing:** include
 
-**Last promotion decision:** 2026-10-12
+**Last promotion decision:** 2026-10-26
 
 ## Purpose and admission rule
 
@@ -39,7 +39,11 @@ entry may keep an explicit gate after promotion.
 
 ## Current promoted work
 
-None as of 2026-10-12.
+None as of 2026-10-26.
+
+`PXI-TODO-002` (enum flags and runtime-named masks) completed on 2026-10-26;
+its accepted scope, task snapshot and verification are in the
+[archive record](docs/archive/flags-editor-2026-10-26.md).
 
 `PXI-TODO-001` (adopt the documentation policy) completed on 2026-10-12. Its
 entry, breakdown, and verification are preserved in the
