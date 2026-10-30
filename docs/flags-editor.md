@@ -92,3 +92,33 @@ writes implement that in their adapter.
 No new dependency or assembly is needed. Package publication and downstream
 consumer upgrades remain explicit release actions. Core contract details are
 in the [technical reference](modules/core/REFERENCE.md#flags).
+
+## Particle and physics adapters
+
+Component descriptors remain the source of labels, tooltips, order, ranges,
+scrub increments, units and reference targets. A pool profile is one component,
+not a tree of per-particle objects. Numeric fields use `AddField`; a birth-kind
+switch uses a boolean field; entity references keep their existing choices.
+The host owns conditional component addition and the effect of changing a field.
+
+An Int32 descriptor is still a number unless the adapter supplies `FlagChoices`.
+The adapter must bridge scene-owned layer names and select the intended bits;
+the Inspector cannot infer that every field called category or mask is a layer
+filter. Set a field's provider after applying descriptor editor options. Keep
+category's nonzero policy separate from a collision mask that allows zero.
+`Range` clamps values; a host needing refusal instead of clamping uses a value
+rule or its native writer. Neither bit editing nor a descriptor range proves
+physical validity.
+
+For example, a collision-radius descriptor can permit values below the actual
+native world-scale minimum. Keep the native diagnostic authoritative. The host
+can show a current status snapshot through `AddDisplay` and refresh it, or place
+the status beside the Inspector. Successful field reads must not be mistaken for
+recovery of an asynchronous native simulation error. Existing getter/setter
+failures describe binding operations, not a solver's latest tick.
+
+Angles can retain `DisplayUnit.Degrees` over native radians. Calculated mass,
+area, center of mass and inertia come from read-only native queries; editable
+mass override and character coupling mass are separate fields. Telemetry and
+simulation state remain host-owned. A consumer must explicitly adopt an
+updated package or a matching source build before these flag APIs are available.
