@@ -104,3 +104,25 @@ dependency or native source was modified. Downstream use needs a separate
 package release and consumer integration. PR review/merge remains the owner's
 decision. Work was isolated on `codex/flags-enum`, based on `ed86261`, while the
 Claude particle work stayed in the separate Engine checkout.
+
+## Branch reconciliation on 2026-10-30
+
+The owner authorized documenting and merging the remaining `codex/flags-enum`
+branch. Comparison against main at
+`d9716b130d7ee4d426e1e71c8dd90cf3772075fe` confirmed that the original code
+and documentation were already present through the reused implementation
+(`4b9c197f654d26cc25aab58954fb8c6365edec30`) and its documentation, merged
+in [PR #11](https://github.com/Sakamoto0110/PixieInspector/pull/11).
+The old branch's distinct commit identities did not represent missing content.
+
+Reconciliation commit `b27275fb17977708e44553e4640b6a14ce9bfed0` merges that
+main baseline into the original branch. Its resulting tracked tree is identical
+to that baseline: the archive router and flags guide retain main's later
+additions, and package metadata remains at 0.3.0. This appended record is the
+only content change proposed by the branch reconciliation PR. The merge makes
+the original delivery commits reachable from main without duplicating code.
+
+VAW binding was revalidated with scope `All`: all eight routes checked, none
+unchecked. Tree comparison establishes content equivalence; it does not rerun
+the historical functional checks above. The reconciliation does not authorize
+a new package release or change the Engine's physics work.
