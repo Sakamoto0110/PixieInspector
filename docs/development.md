@@ -124,8 +124,11 @@ final look on Windows.
 The core and the four views are five packages on nuget.org, always released
 together at one version:
 
-- `Directory.Build.props` holds the `Version` and the metadata the packages
-  share. A project is a package only if it sets `IsPackable`; the hosts and
+- `version.json` owns the version, in four components
+  (`MAJOR.MINOR.PATCH.REVISION`; below 1.0 a break raises `MINOR`).
+  `Directory.Build.props` derives the packages' `Version` from it as the
+  public projection (the first three components) and holds the metadata the
+  packages share. A project is a package only if it sets `IsPackable`; the hosts and
   `DemoObjects` do not.
 - `Directory.Build.targets` makes each view require the core of its own
   version exactly (`[0.1.0]`), because the views use the core's internal
@@ -144,7 +147,7 @@ CI (`.github/workflows/ci.yml`) builds on Linux and Windows with warnings as
 errors, runs the two checks above, and packs, on every pull request and push
 to `main`. To release:
 
-1. Raise the `Version` in `Directory.Build.props`, and merge it into `main`.
+1. Raise the version in `version.json`, and merge it into `main`.
 2. On GitHub, run Actions, Publish, Run workflow, on `main`. It runs CI, stops
    if the tag `v<Version>` already exists, pushes the five packages to
    nuget.org by trusted publishing, and makes the release with that tag.
