@@ -2,10 +2,14 @@
 
   <!-- The packages: the core and the four views go to nuget.org together, at the one Version below.
        .github/workflows/publish.yml, started by hand on GitHub, packs them, pushes them, and tags the
-       commit with v and the Version. A new release raises the Version here. Projects are not packages
-       unless they say so (IsPackable), so the hosts and DemoObjects stay out. -->
+       commit with v and the Version. Projects are not packages unless they say so (IsPackable), so
+       the hosts and DemoObjects stay out. The version has one owner, version.json
+       (MAJOR.MINOR.PATCH.REVISION): Version is its public projection, which the tag and the packages
+       carry; a new release raises version.json. -->
   <PropertyGroup>
-    <Version>0.3.0</Version>
+    <PixieVersionJson>$([System.IO.File]::ReadAllText('$(MSBuildThisFileDirectory)version.json'))</PixieVersionJson>
+    <Version>$([System.Text.RegularExpressions.Regex]::Replace($(PixieVersionJson), '(?s).*"version"\s*:\s*"([0-9]+\.[0-9]+\.[0-9]+)\.[0-9]+".*', '$1'))</Version>
+    <FileVersion>$([System.Text.RegularExpressions.Regex]::Replace($(PixieVersionJson), '(?s).*"version"\s*:\s*"([0-9.]+)".*', '$1'))</FileVersion>
     <IsPackable>false</IsPackable>
     <Authors>Rafael Sakamoto</Authors>
     <Copyright>Copyright (c) 2026 Rafael Sakamoto</Copyright>
