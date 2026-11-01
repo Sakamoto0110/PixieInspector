@@ -124,8 +124,11 @@ final look on Windows.
 The core and the four views are five packages on nuget.org, always released
 together at one version:
 
-- `Directory.Build.props` holds the `Version` and the metadata the packages
-  share. A project is a package only if it sets `IsPackable`; the hosts and
+- `version.json` owns the version, in four components
+  (`MAJOR.MINOR.PATCH.REVISION`; below 1.0 a break raises `MINOR`).
+  `Directory.Build.props` derives the packages' `Version` from it as the
+  public projection (the first three components) and holds the metadata the
+  packages share. A project is a package only if it sets `IsPackable`; the hosts and
   `DemoObjects` do not.
 - `Directory.Build.targets` makes each view require the core of its own
   version exactly (`[0.1.0]`), because the views use the core's internal
@@ -144,7 +147,7 @@ CI (`.github/workflows/ci.yml`) builds on Linux and Windows with warnings as
 errors, runs the two checks above, and packs, on every pull request and push
 to `main`. To release:
 
-1. Raise the `Version` in `Directory.Build.props`, and merge it into `main`.
+1. Raise the version in `version.json`, and merge it into `main`.
 2. On GitHub, run Actions, Publish, Run workflow, on `main`. It runs CI, stops
    if the tag `v<Version>` already exists, pushes the five packages to
    nuget.org by trusted publishing, and makes the release with that tag.
@@ -256,3 +259,33 @@ Under Wine:
   clipping, which is why the `(?)` mark is drawn.
 - Xvfb can die between runs (`Error creating window handle`); start it again
   after deleting `/tmp/.X11-unix/X99` and `/tmp/.X99-lock`.
+
+## Void Agent Workplace
+
+On the owner's machine, this repository lives inside a Void Agent Workplace
+checkout, in its Pixie family of managed projects (`projects/Pixie/`, beside
+PixieEngine and PixieLib), and is bound to the VAW profile `pixieinspector`, revision 3:
+the local branch `codex/pixie-workplace`, commit `8ce42fe`, VAW 0.3.0.0. It has
+the capabilities of PixieEngine's profile: workflow records with planned-pause
+checkpoints that another agent can verify and resume, scoped premises, repository
+state, multi-agent validation and documentation records, package validation, and
+product versioning. Campaigns stay frozen in VAW. The three Pixie profiles (`pixieengine`, `pixieinspector`, `pixielib`) share one revision number and are revised together, even when only one of them changes. Two skills of the profile,
+`pixieinspector-documentation` and `pixieinspector-release`, route an agent to this guide and the
+[documentation policy](governance/documentation-policy.md); the repository's
+documents remain the authority. VAW records live in `.local/vaw/` and never
+replace `TODO.md`, `TASKLIST.md`, the archive, or the code. Nothing in this
+repository depends on VAW, and a binding grants no authority.
+
+The binding is in the explicit registry `.local\bindings\pixie.json` of the VAW
+checkout, passed as an absolute path. From the repository root, in PowerShell 7
+(the checkout is three directories up):
+
+```powershell
+$bindings = (Resolve-Path ..\..\..\.local\bindings\pixie.json).Path  # VAW needs it absolute
+..\..\..\scripts\resolve-project-binding.ps1 -RepositoryPath . -BindingsPath $bindings `
+    -CompatibilityScope Routes -RouteId core,documentation
+..\..\..\vaw.ps1 skills list -Agent claude -RepositoryPath . -BindingsPath $bindings
+```
+
+Select the routes the task touches. Never delete ignored files in the VAW
+checkout (`git clean -x` and the like): `projects/` is ignored there.

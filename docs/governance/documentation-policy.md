@@ -41,7 +41,8 @@ to its owner; they must not maintain a competing mutable copy.
 |---|---|
 | Implemented behavior | Current source code |
 | Targets, references, package references, and build properties | Each project file (`*.csproj`) |
-| Package version and the metadata the packages share | `Directory.Build.props` |
+| Product version (four components) | `version.json`; `Directory.Build.props` derives the package `Version` |
+| Metadata the packages share | `Directory.Build.props` |
 | CI and publishing | `.github/workflows/` |
 | Solution membership | `PixieInspector.slnx` |
 | Dependencies (toolchain, packages, own projects), versions, status, and candidates | Root `DEPENDENCIES.md` |
@@ -61,6 +62,7 @@ to its owner; they must not maintain a competing mutable copy.
 | Chronology, completed work, superseded state, and dated rationale | `docs/archive/` |
 | Documentation structure and vocabulary | `docs/schemas/documentation-schema.json` |
 | Open questions and answers before promotion | `.local/` (unversioned; never authority) |
+| VAW coordination records: workflow state, checkpoints, premises, validation | `.local/vaw/` (unversioned; never authority) |
 
 Generated output is never authority and is never versioned: `bin/`, `obj/`, and
 the `imgui.ini` a host writes where it runs.
