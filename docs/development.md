@@ -259,3 +259,33 @@ Under Wine:
   clipping, which is why the `(?)` mark is drawn.
 - Xvfb can die between runs (`Error creating window handle`); start it again
   after deleting `/tmp/.X11-unix/X99` and `/tmp/.X99-lock`.
+
+## Void Agent Workplace
+
+On the owner's machine, this repository lives inside a Void Agent Workplace
+checkout, in its Pixie family of managed projects (`projects/Pixie/`, beside
+PixieEngine and PixieLib), and is bound to the VAW profile `pixieinspector`, revision 3:
+the local branch `codex/pixie-workplace`, commit `8ce42fe`, VAW 0.3.0.0. It has
+the capabilities of PixieEngine's profile: workflow records with planned-pause
+checkpoints that another agent can verify and resume, scoped premises, repository
+state, multi-agent validation and documentation records, package validation, and
+product versioning. Campaigns stay frozen in VAW. Two skills of the profile,
+`pixieinspector-documentation` and `pixieinspector-release`, route an agent to this guide and the
+[documentation policy](governance/documentation-policy.md); the repository's
+documents remain the authority. VAW records live in `.local/vaw/` and never
+replace `TODO.md`, `TASKLIST.md`, the archive, or the code. Nothing in this
+repository depends on VAW, and a binding grants no authority.
+
+The binding is in the explicit registry `.local\bindings\pixie.json` of the VAW
+checkout, passed as an absolute path. From the repository root, in PowerShell 7
+(the checkout is three directories up):
+
+```powershell
+$bindings = (Resolve-Path ..\..\..\.local\bindings\pixie.json).Path  # VAW needs it absolute
+..\..\..\scripts\resolve-project-binding.ps1 -RepositoryPath . -BindingsPath $bindings `
+    -CompatibilityScope Routes -RouteId core,documentation
+..\..\..\vaw.ps1 skills list -Agent claude -RepositoryPath . -BindingsPath $bindings
+```
+
+Select the routes the task touches. Never delete ignored files in the VAW
+checkout (`git clean -x` and the like): `projects/` is ignored there.
