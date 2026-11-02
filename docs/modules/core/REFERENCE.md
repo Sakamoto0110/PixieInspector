@@ -253,6 +253,23 @@ and supplies no partial list; a successful retry clears only that provider's
 failure, preserving a prior getter or write failure. See the
 [flags guide](../../flags-editor.md) for host integration and scope boundaries.
 
+## UI edit chains and manual locks
+
+`IsEditLocked` is a manual direct-UI lock, independent of real `ReadOnly`.
+`ChainsWith` declares symmetric static edges between numeric leaves, including
+explicit cross-Inspector edges. `EnableChain` creates/merges canonical runtime
+groups; `ChainedWith` includes self, including the armed singleton. `ClearChain`
+clears a whole runtime group. Configuration changes never write bound values.
+
+`EditValue` and `BeginEdit` are explicit UI entry points. Existing SetValue and
+SetValues remain programmatic and do not propagate or consult the UI lock.
+InspectorEditGesture snapshots displayed values per member/per binding; SetDelta
+is a total delta from those starts, SetValue is absolute, Cancel restores through
+normal setters, and Dispose ends without rollback. InspectorEditResult captures
+per-member outcomes, pending state and failures without promising atomic writes.
+Bind/item reset and disposal invalidate runtime state and stale gestures. See the
+[host guide](../../edit-chains.md) for lifecycle, units, failures and view scope.
+
 ## Binding
 
 - `Bind(instance)` binds one object; binding over a bound one throws

@@ -41,6 +41,9 @@ the code, read the [development guide](development.md).
 
 ## Modules
 
+The [edit-chain guide](edit-chains.md) describes manual UI locks, numeric chains,
+ImGui interaction lifecycle and the current view-parity limits.
+
 | Boundary | Project | Introduction | Reference |
 |---|---|---|---|
 | `core` | `PixieInspector/` | [`README.md`](modules/core/README.md) | [`REFERENCE.md`](modules/core/REFERENCE.md) |

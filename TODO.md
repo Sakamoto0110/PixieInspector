@@ -20,7 +20,7 @@
 
 **Indexing:** include
 
-**Last promotion decision:** 2026-10-26
+**Last promotion decision:** 2026-11-01
 
 ## Purpose and admission rule
 
@@ -39,7 +39,9 @@ entry may keep an explicit gate after promotion.
 
 ## Current promoted work
 
-None as of 2026-10-26.
+None as of 2026-11-01. `PXI-TODO-003` (numeric UI chains and manual edit locks)
+completed locally; [scope, verification and remaining acceptance](docs/archive/edit-chains-2026-11-01.md)
+are archived. Owner visual acceptance and publication are separate.
 
 `PXI-TODO-002` (enum flags and runtime-named masks) completed on 2026-10-26;
 its accepted scope, task snapshot and verification are in the

@@ -126,6 +126,10 @@ value changes; the object keeps its value. The color button takes a
 
 ## Conversions
 
+Manual `IsEditLocked` disables direct editors and label scrubbing. Chain controls
+and chained-edit gestures are currently ImGui-only; WinForms retains its existing
+setter path. See the [edit-chain guide](../../edit-chains.md).
+
 `PrimitiveConversions` converts the PixieLib primitives to the WinForms types
 PixieLib does not know (PixieLib converts its double types and colors to
 `System.Drawing` itself), as extensions, so neither PixieLib nor the core

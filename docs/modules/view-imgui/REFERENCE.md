@@ -154,6 +154,18 @@ The editor comes from `ViewRules.KindFor(node)`, shared with the other views.
   `RefreshEachFrame` on, each frame reads every node; a host whose objects
   report their changes, or that refreshes on its own schedule, turns it off.
 
+## Edit controls and interaction lifecycle
+
+The lock/chain/empty slots precede each field label. Lock blocks direct input and
+scrubbing without bypassing real read-only checks during chain propagation.
+Numeric chains use core edit gestures in displayed units. Right click clears
+the entire active chain; an armed singleton is identified by its tooltip.
+InteractionStarted/InteractionFinished bracket grouped input, with explicit
+cancel/rollback result or abandonment. Hosts can call EndInteraction before
+replacing state and DrawEditControls for custom rows. Optional EditIcons are
+renderer-owned textures; fallback symbols need no renderer integration. See
+the [edit-chain guide](../../edit-chains.md) for the complete host contract.
+
 ## Conversions
 
 `PrimitiveConversions` turns the PixieLib primitives into the

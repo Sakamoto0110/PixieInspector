@@ -39,7 +39,7 @@ and the section shape is in the
 
 ## Open breakdowns
 
-None as of 2026-10-26. The completed breakdowns are preserved with their parents:
+None as of 2026-11-01. The completed breakdowns are preserved with their parents:
 
 - [PXI-TODO-002: flags and runtime masks](docs/archive/flags-editor-2026-10-26.md).
 - [PXI-TODO-001: documentation foundation](docs/archive/documentation-foundation-2026-10-12.md).
