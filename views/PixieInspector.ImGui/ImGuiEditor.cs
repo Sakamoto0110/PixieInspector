@@ -23,7 +23,7 @@ internal abstract class ImGuiEditor
 
     // Whether the editor takes input: not on a read-only node, nor in a branch whose group was replaced
     // outside the inspector (P3.4).
-    public virtual bool Enabled => !Node.ReadOnly && !Node.IsCompromised;
+    public virtual bool Enabled => !Node.ReadOnly && !Node.IsEditLocked && !Node.IsCompromised;
 
     // The editor of each kind (P7.9); a group, a header and a separator have none, and a selector or a
     // list on something that is not a collection falls back to text.

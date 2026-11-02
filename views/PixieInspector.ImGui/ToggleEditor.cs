@@ -18,6 +18,6 @@ internal sealed class ToggleEditor(ImGuiRow row) : ImGuiEditor(row)
             return;
 
         var value = flags == All;
-        Row.Write(() => Node.SetValue(value));
+        Row.WriteValue(value);
     }
 }

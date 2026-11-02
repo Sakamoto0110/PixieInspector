@@ -60,6 +60,6 @@ internal sealed class ColorEditor(ImGuiRow row) : ImGuiEditor(row)
             : type == typeof(System.Drawing.Color) ? (System.Drawing.Color)rgba
             : rgba;
 
-        Row.Write(() => Node.SetValue(value));
+        Row.WriteValue(value);
     }
 }

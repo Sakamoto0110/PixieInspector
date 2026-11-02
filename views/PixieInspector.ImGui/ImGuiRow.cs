@@ -12,7 +12,7 @@ namespace PixieInspector.ImGui;
 // its editor in the second, with the failure under it in light red (P7.11). A number's label can be dragged to scrub it (P7.18), and a node with Help has a (?) at
 // the end of its label, whose tooltip is the long help (P7.15). What fails while the row shows its objects
 // stays in the row (3.11).
-internal sealed class ImGuiRow
+internal sealed partial class ImGuiRow
 {
     private const string HelpMark = "(?)";
 
@@ -26,9 +26,10 @@ internal sealed class ImGuiRow
     // tries again.
     private string? Fault;
 
-    public ImGuiRow(InspectorNode node)
+    public ImGuiRow(InspectorNode node, ImGuiInspectorView view)
     {
         Node = node;
+        View = view;
         Kind = ViewRules.KindFor(node);
         IsGroup = node.IsGroup;
         Editor = ImGuiEditor.For(this, Kind);
@@ -38,6 +39,16 @@ internal sealed class ImGuiRow
     }
 
     public InspectorNode Node { get; }
+    internal ImGuiInspectorView View { get; }
+
+    public bool WriteValue(object? value, InspectorNode? target = null) => Write(() => CheckResult(View.WriteValue(target ?? Node, value)));
+
+    internal void CheckResult(InspectorEditResult result)
+    {
+        var failed = result.Outcomes.FirstOrDefault(o => !o.Accepted);
+        if (failed != null)
+            throw new InvalidOperationException($"{failed.Node.Path}: {failed.Exception?.Message ?? failed.Failure?.Reason}");
+    }
 
     // The editor the row was made for, null for none; a node that changes it gets a new row.
     public EditorKind? Kind { get; }
@@ -120,7 +131,8 @@ internal sealed class ImGuiRow
     // it take the mouse.
     private bool DrawLabel()
     {
-        var flags = ImGuiTreeNodeFlags.NoTreePushOnOpen | ImGuiTreeNodeFlags.SpanFullWidth | ImGuiTreeNodeFlags.AllowOverlap;
+        DrawEditControls();
+        var flags = ImGuiTreeNodeFlags.NoTreePushOnOpen | ImGuiTreeNodeFlags.SpanAvailWidth | ImGuiTreeNodeFlags.AllowOverlap;
 
         if (Kind == EditorKind.Header)
             flags |= ImGuiTreeNodeFlags.Framed | ImGuiTreeNodeFlags.SpanAllColumns;
