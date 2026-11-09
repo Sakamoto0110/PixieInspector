@@ -30,7 +30,8 @@ rules.
 ## Working agreements
 
 - Change the design only after the owner confirms it. When the owner asks for
-  a change, apply it, verify it, and push it.
+  a change, apply it and verify the affected scope. Commit and push only when
+  authorized; documentation work does not imply either action.
 - Simplify, but keep one concept per file; do not merge files to lower the
   count.
 - Redesign one thing at a time, and fix the cause rather than a symptom.
@@ -52,7 +53,8 @@ The .NET 10 SDK builds everything, the Windows views included, on any system:
 dotnet build PixieInspector.slnx -p:EnableWindowsTargeting=true
 ```
 
-A change is not done until the solution builds with 0 warnings and 0 errors.
+Source or build changes require the affected build to pass with 0 warnings
+and 0 errors. Documentation-only changes use the structural review below.
 Without the SDK, the official script installs it into the user profile:
 
 ```bash
@@ -63,7 +65,9 @@ export PATH="$HOME/.dotnet:$PATH" DOTNET_ROOT="$HOME/.dotnet"
 
 ## Checks
 
-Save each output before a change and compare it after:
+For source changes affecting these demonstrations, save each output before
+the change and compare it after. These are existing procedures, not a demand
+to replay product tests during documentation maintenance:
 
 - **TuxHost** prints 67 lines: the trees of the demo objects under each layer
   of options. Compare with `cmp`.
@@ -118,6 +122,21 @@ dotnet publish App.csproj -r win-x64 --self-contained -o "$WINEPREFIX/drive_c/ap
 when the window opened, and `xdotool` clicks and types. Wine is not Windows:
 fonts are substitutes and there is no visual theme, so the owner checks the
 final look on Windows.
+
+## Documentation changes
+
+Use the [documentation index](README.md) to find the fact's owner. The roadmap
+holds rationale, outcomes and criteria; TODO holds active work; TASKLIST adds
+decomposition only when needed. [History](history/README.md) routes completed
+outcomes and their original evidence. Templates follow the same ownership model.
+
+For documentation-only work, review links/anchors, metadata, work references
+and the diff. Preserve existing historical bodies and acceptance limitations.
+The workspace's generic PowerShell checker can validate the Git-owned Markdown
+inventory with `-RepositoryPath` and explicit `-AdditionalPath` entries for new
+files. Its `-ConfigPath` selects the local metadata schema and required docs;
+it does not build or run Inspector. See the
+[enforcement scope](governance/documentation-policy.md#enforcement).
 
 ## Packages
 

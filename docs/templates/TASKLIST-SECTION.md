@@ -27,7 +27,7 @@ accepted scope; they never extend it.
 ```text
 ## `PXI-TODO-001` — Parent title
 
-**Parent:** PXI-TODO-001
+**Parent:** link to PXI-TODO-001 in TODO.md
 
 - `PXI-TASK-001` — **Status:** open — Description.
 - `PXI-TASK-002` — **Status:** dropped — Description. **Reason:** why.

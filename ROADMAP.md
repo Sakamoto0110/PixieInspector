@@ -8,7 +8,7 @@
 
 **Lifecycle:** current
 
-**Subject:** what PixieInspector is and is not, direction, guardrails, and freezes
+**Subject:** product direction, rationale, phase outcomes, acceptance criteria, guardrails and freezes
 
 **Surface:** roadmap
 
@@ -25,8 +25,11 @@
 ## Purpose
 
 This document owns what PixieInspector is, what it is not, where it is heading,
-and which boundaries must be preserved. It does not authorize implementation;
-[`TODO.md`](TODO.md) is the only scheduler. Unpromoted ideas live in
+and which boundaries must be preserved. Accepted phases belong here with their
+rationale, intended outcomes and acceptance criteria. [`TODO.md`](TODO.md)
+records active work, dependencies and gates; [`TASKLIST.md`](TASKLIST.md)
+decomposes large entries without expanding their scope. Direction alone does
+not authorize implementation. Unpromoted ideas live in
 [`docs/proposals/`](docs/proposals/README.md), and the rationale behind the
 decisions below is in the [archive](docs/archive/README.md): the decisions
 numbered `P` and the sections cited by the source are in
@@ -42,7 +45,7 @@ numbered `P` and the sections cited by the source are in
   attributes, then the manual layer set in code, which has the last word.
 - A **UI-agnostic core** with **one view per framework**: Dear ImGui (through
   Hexa.NET.ImGui), Avalonia, WinForms, and WPF.
-- The **inspector of PixieEngine's C# editor**, which builds inspectors in
+- The **inspector used by the independent C# PixieEditor**, which builds inspectors in
   manual mode over proxy classes that carry no attributes.
 - A **consumer of PixieLib**, which supplies the primitives (points, sizes,
   rectangles, colors).
@@ -61,13 +64,25 @@ numbered `P` and the sections cited by the source are in
 
 ## Current direction
 
-1. Serve PixieEngine's editor. What it needs is recorded in
-   [PXI-ARCHIVE-008](docs/archive/editor-discussion-2026-10-12.md) and split
-   into eight proposals, none promoted:
-   [PXI-PROPOSAL-001](docs/proposals/editor-shell-prototype.md) to
-   [PXI-PROPOSAL-008](docs/proposals/previous-value-in-value-changed.md).
+1. Serve Editor consumers through generic Inspector capabilities. The original
+   discussion is preserved in [PXI-ARCHIVE-008](docs/archive/editor-discussion-2026-10-12.md).
+   Its eight proposals keep their individual states in the
+   [proposal index](docs/proposals/README.md); the flags proposal is already
+   completed. Engine-specific semantics remain in the consumer's adapter.
 2. Keep the views on par: a capability one view gains is a decision for each
    of the others, not an automatic port.
+
+## Delivery phases
+
+No promoted product phase is open in the recorded queue at the documentation
+migration baseline, 2026-11-06. The [history index](docs/history/README.md)
+routes completed work and its evidence limits; those outcomes are not active
+roadmap blocks. Open proposals remain proposals.
+
+When a new phase is accepted, record its rationale, outcome, scope and criteria
+here, then link its executable work in TODO. The [phase template](docs/templates/ROADMAP-ITEM.md)
+keeps those responsibilities separate. Do not invent a roadmap block retroactively
+for legacy work that had only a TODO or owner instruction.
 
 ## Active guardrails
 

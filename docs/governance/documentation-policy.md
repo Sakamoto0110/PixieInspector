@@ -30,7 +30,9 @@ The model is derived from the PixieEngine documentation policy and schema
 turn a partial derivation of the NekoLib model that Void Agent Workplace
 extracted. The derivation and every intentional difference are recorded in the
 [schema index](../schemas/README.md). Neither project is an authority over this
-repository.
+repository. The workspace owns shared governance and external project profiles;
+Inspector retains its source, contracts, planning and evidence. Machine-local
+bindings route that configuration and are not durable authority.
 
 ## Authority
 
@@ -49,17 +51,18 @@ to its owner; they must not maintain a competing mutable copy.
 | Public API | The compiled assemblies of the core and the views; no accepted API baseline exists yet |
 | Module technical contract | `docs/modules/<boundary>/REFERENCE.md` |
 | Module routing and identity | `docs/modules/<boundary>/MANIFEST.md` |
-| What PixieInspector is and is not, direction, guardrails, and freezes | Root `ROADMAP.md` |
-| Formally promoted work, ordering, gates, and completion criteria | Root `TODO.md` |
+| Overall picture, rationale, phase outcomes, acceptance criteria, guardrails and freezes | Root `ROADMAP.md` |
+| Accepted work, status, ordering, dependencies and execution gates | Root `TODO.md` |
 | Decomposition of a promoted `TODO.md` entry into tasks | Root `TASKLIST.md` |
-| Unpromoted ideas | One record per file under `docs/proposals/` |
+| Proposed designs and their originating rationale | One record per file under `docs/proposals/`; the index retains promotion/outcome states |
 | How to build, check, and commit a change | `docs/development.md`, under the commit rules below |
 | What a host shows and how to run it | `hosts/<host>/README.md` |
 | Confirmed defects | Module `ISSUES.md` |
 | Unconfirmed observations | Module `FINDINGS.md` |
 | Evidence requirements | Module `VALIDATION_REQUIREMENTS.md` |
-| Executed evidence | Module `VALIDATIONS.md`, tests, and scenarios |
-| Chronology, completed work, superseded state, and dated rationale | `docs/archive/` |
+| Executed evidence | Canonical reports, scenarios and original archive records; indexes link to those owners |
+| Completed outcomes and acceptance dispositions | `docs/history/`, linking evidence and the Git planning baseline |
+| Legacy chronology, completed work, superseded state and dated rationale | `docs/archive/`, preserved at its original baselines |
 | Documentation structure and vocabulary | `docs/schemas/documentation-schema.json` |
 | Open questions and answers before promotion | `.local/` (unversioned; never authority) |
 | VAW coordination records: workflow state, checkpoints, premises, validation | `.local/vaw/` (unversioned; never authority) |
@@ -86,6 +89,7 @@ states that limitation instead of inventing one.
 Use the history index to discover closures. Existing archive records remain
 unchanged at their historical baselines. Evidence records distinguish requirements,
 actual execution and limitations; a structural check cannot accept a product gate.
+
 ## Dependencies
 
 `DEPENDENCIES.md` lists every dependency: toolchain, packages, and the owner's
@@ -117,13 +121,19 @@ repository fact.
 
 ## Archive
 
-`docs/archive/` owns the history of the repository: what changed, what was
-completed, and why things changed. Every archived event is one file, however
-small: a decision, a promotion, a completed `TODO.md` entry with its
-`TASKLIST.md` section, a fix, a finding, a proposal outcome, a dependency
-change, or a roadmap change. Material imported for provenance, from another
-repository or from this repository's documentation before this policy, is
-archived the same way.
+`docs/archive/` preserves the earlier chronology and imported provenance.
+Its records and router keep their original identities, bodies and baselines.
+The [history index](../history/README.md) routes completed outcomes to those
+records without copying them.
+
+For new completions, use the roadmap closure flow under `docs/history/`.
+Preserve intent and outcome, link canonical evidence and record the planning
+commit. Do not copy complete TODO/TASKLIST sections or create separate decision,
+promotion and completion records for the same fact. Important nested decisions
+belong in the closure or remain linked at their existing owner.
+
+The following fields describe the legacy archive shape and remain applicable
+when maintaining its records:
 
 Every record identifies what produced it, when, and in which commits:
 
@@ -249,6 +259,15 @@ do not own a format, path, authority rule, or acceptance criterion here.
 
 ## Enforcement
 
-No documentation verifier exists yet. Until one does, these rules are applied
-by review only, and a document that satisfies them has not been mechanically
-checked. Claims about structural validity must say so.
+The workspace provides the generic PowerShell `scripts/checkdocs.ps1` checker.
+Inspector has no repository-local copy. When available, pass this repository
+through `-RepositoryPath`; pass a configuration that selects this project's
+metadata schema when validating metadata vocabulary. `-AdditionalPath` includes
+new documents without scanning unrelated ignored state.
+
+The checker validates declared structure, links/anchors, identifiers, metadata
+and work references. It does not establish implementation, visual, package or
+consumer acceptance. Documentation-only changes use structural review and
+history-preservation checks; they do not require reopening product tests.
+Standalone source builds remain independent of VAW. Reports name the checker
+scope and distinguish structural verification from manual semantic review.

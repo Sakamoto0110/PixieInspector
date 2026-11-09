@@ -35,9 +35,10 @@ Void Agent Workplace extracted. PixieEngine is the nearest relative: the same
 family, and the owner's latest decisions about the model. NekoLib supplies what
 PixieEngine left out because it only fits a .NET library.
 
-Like PixieEngine, this is a documentation-only derivation: the repository is not
-bound to a Void Agent Workplace profile, and nothing here depends on its tooling
-or on its validation freeze.
+At the derivation baseline this was documentation-only, without a VAW binding.
+The current workspace binding routes shared governance and external project
+profiles; Inspector source, contracts and evidence remain independently owned.
+See [current development guidance](../development.md#void-agent-workplace).
 
 | Area | PixieEngine | PixieInspector | Reason |
 |---|---|---|---|
@@ -55,9 +56,10 @@ or on its validation freeze.
 | Validation boundaries | Includes `ipc` | Without `ipc` | No inter-process code |
 | Stable IDs | `PIXIE-` | `PXI-` | Owner decision, 2026-10-12 |
 
-Everything else follows PixieEngine unchanged: the metadata vocabulary, the
-archive with its router, `TODO.md` with its child `TASKLIST.md`, the root
-`DEPENDENCIES.md`, `.local/`, and module surfaces created on demand.
+The remaining derivation reused the metadata vocabulary, archive/router shape,
+root `DEPENDENCIES.md`, `.local/` and on-demand module surfaces. The current
+planning and closure model is described below and owned by the local policy;
+changes in another repository do not automatically change this contract.
 
 See the policy enforcement section for the current structural checks.
 
