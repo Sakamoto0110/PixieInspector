@@ -796,6 +796,7 @@ public abstract partial class InspectorNode : IEnumerable<InspectorNode>, IDispo
     // Nodes will hold resources later (images, files); disposing a node disposes its branch.
     public virtual void Dispose()
     {
+        DisposeEditing();
         foreach (var child in Children)
             child.Dispose();
     }

@@ -8,7 +8,7 @@
 
 **Lifecycle:** current
 
-**Subject:** formally promoted work, gates, dependencies, and completion criteria
+**Subject:** accepted work, status, dependencies and links to roadmap acceptance
 
 **Surface:** work-scheduler
 
@@ -20,15 +20,16 @@
 
 **Indexing:** include
 
-**Last promotion decision:** 2026-10-26
+**Last promotion decision:** 2026-11-01
 
 ## Purpose and admission rule
 
-This file is the only scheduler. It holds work that the owner has formally
-promoted, with enough scope to execute and close it. It does not hold ideas
+This file owns the active work queue, dependencies and execution gates.
+The roadmap owns rationale, outcomes, accepted scope and acceptance criteria.
+Entries link to those criteria instead of maintaining a second copy. It does not hold ideas
 ([`docs/proposals/`](docs/proposals/README.md)), direction
 ([`ROADMAP.md`](ROADMAP.md)), or completion narratives
-([`docs/archive/`](docs/archive/README.md)).
+([history](docs/history/README.md) and the [legacy archive](docs/archive/README.md)).
 
 An entry whose scope is large, or that decomposes into many small tasks, keeps
 one entry here and its breakdown in [`TASKLIST.md`](TASKLIST.md). The rules are
@@ -39,12 +40,11 @@ entry may keep an explicit gate after promotion.
 
 ## Current promoted work
 
-None as of 2026-10-26.
+None recorded since 2026-11-01. The documentation reorganization on 2026-11-06
+introduces no new product task or acceptance decision.
 
-`PXI-TODO-002` (enum flags and runtime-named masks) completed on 2026-10-26;
-its accepted scope, task snapshot and verification are in the
-[archive record](docs/archive/flags-editor-2026-10-26.md).
+## Completed outcomes
 
-`PXI-TODO-001` (adopt the documentation policy) completed on 2026-10-12. Its
-entry, breakdown, and verification are preserved in the
-[archive record](docs/archive/documentation-foundation-2026-10-12.md).
+Use the [history index](docs/history/README.md) for delivered work, original
+planning records and evidence limits. A locally completed implementation does
+not imply owner visual acceptance, publication or consumer adoption.

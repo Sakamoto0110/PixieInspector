@@ -34,7 +34,7 @@ internal sealed class SliderEditor(ImGuiRow row) : ImGuiEditor(row)
         var written = value;
 
         if (written != current)
-            Row.Write(() => Node.SetValue(written));
+            Row.WriteValue(written);
     }
 
     // The unit's suffix as ImGui prints it, a '%' doubled.

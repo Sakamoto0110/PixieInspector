@@ -30,7 +30,8 @@ rules.
 ## Working agreements
 
 - Change the design only after the owner confirms it. When the owner asks for
-  a change, apply it, verify it, and push it.
+  a change, apply it and verify the affected scope. Commit and push only when
+  authorized; documentation work does not imply either action.
 - Simplify, but keep one concept per file; do not merge files to lower the
   count.
 - Redesign one thing at a time, and fix the cause rather than a symptom.
@@ -52,7 +53,8 @@ The .NET 10 SDK builds everything, the Windows views included, on any system:
 dotnet build PixieInspector.slnx -p:EnableWindowsTargeting=true
 ```
 
-A change is not done until the solution builds with 0 warnings and 0 errors.
+Source or build changes require the affected build to pass with 0 warnings
+and 0 errors. Documentation-only changes use the structural review below.
 Without the SDK, the official script installs it into the user profile:
 
 ```bash
@@ -63,7 +65,9 @@ export PATH="$HOME/.dotnet:$PATH" DOTNET_ROOT="$HOME/.dotnet"
 
 ## Checks
 
-Save each output before a change and compare it after:
+For source changes affecting these demonstrations, save each output before
+the change and compare it after. These are existing procedures, not a demand
+to replay product tests during documentation maintenance:
 
 - **TuxHost** prints 67 lines: the trees of the demo objects under each layer
   of options. Compare with `cmp`.
@@ -118,6 +122,21 @@ dotnet publish App.csproj -r win-x64 --self-contained -o "$WINEPREFIX/drive_c/ap
 when the window opened, and `xdotool` clicks and types. Wine is not Windows:
 fonts are substitutes and there is no visual theme, so the owner checks the
 final look on Windows.
+
+## Documentation changes
+
+Use the [documentation index](README.md) to find the fact's owner. The roadmap
+holds rationale, outcomes and criteria; TODO holds active work; TASKLIST adds
+decomposition only when needed. [History](history/README.md) routes completed
+outcomes and their original evidence. Templates follow the same ownership model.
+
+For documentation-only work, review links/anchors, metadata, work references
+and the diff. Preserve existing historical bodies and acceptance limitations.
+The workspace's generic PowerShell checker can validate the Git-owned Markdown
+inventory with `-RepositoryPath` and explicit `-AdditionalPath` entries for new
+files. Its `-ConfigPath` selects the local metadata schema and required docs;
+it does not build or run Inspector. See the
+[enforcement scope](governance/documentation-policy.md#enforcement).
 
 ## Packages
 
@@ -262,30 +281,25 @@ Under Wine:
 
 ## Void Agent Workplace
 
-On the owner's machine, this repository lives inside a Void Agent Workplace
-checkout, in its Pixie family of managed projects (`projects/Pixie/`, beside
-PixieEngine and PixieLib), and is bound to the VAW profile `pixieinspector`, revision 3:
-the local branch `codex/pixie-workplace`, commit `8ce42fe`, VAW 0.3.0.0. It has
-the capabilities of PixieEngine's profile: workflow records with planned-pause
-checkpoints that another agent can verify and resume, scoped premises, repository
-state, multi-agent validation and documentation records, package validation, and
-product versioning. Campaigns stay frozen in VAW. The three Pixie profiles (`pixieengine`, `pixieinspector`, `pixielib`) share one revision number and are revised together, even when only one of them changes. Two skills of the profile,
-`pixieinspector-documentation` and `pixieinspector-release`, route an agent to this guide and the
-[documentation policy](governance/documentation-policy.md); the repository's
-documents remain the authority. VAW records live in `.local/vaw/` and never
-replace `TODO.md`, `TASKLIST.md`, the archive, or the code. Nothing in this
-repository depends on VAW, and a binding grants no authority.
+The workspace owns project profiles outside the VAW source repository. The
+active Pixie family contains Engine, Editor, Inspector and Lib at profile
+revision 4; product code and local project contracts remain independently owned.
+The Editor's `vaw-local` remote is a local binding identity, not publication.
 
-The binding is in the explicit registry `.local\bindings\pixie.json` of the VAW
-checkout, passed as an absolute path. From the repository root, in PowerShell 7
-(the checkout is three directories up):
+Use the activated workspace launcher from the project root in PowerShell 7:
 
 ```powershell
-$bindings = (Resolve-Path ..\..\..\.local\bindings\pixie.json).Path  # VAW needs it absolute
-..\..\..\scripts\resolve-project-binding.ps1 -RepositoryPath . -BindingsPath $bindings `
-    -CompatibilityScope Routes -RouteId core,documentation
-..\..\..\vaw.ps1 skills list -Agent claude -RepositoryPath . -BindingsPath $bindings
+& ../../.governance/vaw.ps1 -Action resolve-project-binding -Arguments @{ RepositoryPath = (Get-Location).Path }
+& ../../.governance/vaw.ps1 -Action resolve-workplace-binding -Arguments @{ WorkplacePath = (Resolve-Path ..).Path }
 ```
 
-Select the routes the task touches. Never delete ignored files in the VAW
-checkout (`git clean -x` and the like): `projects/` is ignored there.
+The launcher selects external profiles, the explicit registry, and the installed
+package set. Require `bound` for the project and `workplace_bound` for the family.
+Its activation receipt records the platform location, exact pins, packages and
+shared-policy hash. The shared policy is materialized from the workspace's
+versioned configuration; runtime copies and coordination records are local.
+
+Do not use an old VAW checkout's default profile directory after rebind. A
+binding grants no publication authority. Standalone project build and validation
+still work without VAW. Never run `git clean -x` on the enclosing VAW checkout:
+its ignored `projects/` contains independent repositories and unpushed work.

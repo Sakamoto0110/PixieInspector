@@ -406,7 +406,10 @@ public sealed class Inspector : IEnumerable<InspectorNode>, IDisposable
     private void ResetNodes()
     {
         foreach (var node in Root)
+        {
+            node.ResetEditing();
             node.Reset();
+        }
 
         Root.CheckRules(null);
         Watcher.Rewire();

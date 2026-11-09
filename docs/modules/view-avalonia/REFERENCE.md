@@ -110,6 +110,10 @@ package), hence the flyout.
 
 ## Conversions
 
+Manual `IsEditLocked` disables direct editors and label scrubbing. Chain controls
+and chained-edit gestures are currently ImGui-only; Avalonia retains its existing
+setter path. See the [edit-chain guide](../../edit-chains.md).
+
 `PrimitiveConversions` converts the PixieLib primitives to Avalonia types, as
 extensions rather than implicit operators, so neither PixieLib nor the core
 depends on Avalonia.

@@ -336,7 +336,7 @@ internal sealed class AvaloniaRow : IDisposable
         if (Editor == null)
             return;
 
-        Editor.ShowState(Node.ReadOnly, !Node.IsCompromised);
+        Editor.ShowState(Node.ReadOnly || Node.IsEditLocked, !Node.IsCompromised);
         ToolTip.SetTip(Editor.Control, failure ?? Node.Tooltip);
 
         if (!Editor.ShowsErrors)

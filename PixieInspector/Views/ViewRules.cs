@@ -33,7 +33,7 @@ internal static class ViewRules
     public static bool CanScrub(InspectorNode node)
     {
         return !node.IsGroup && node.Editor != EditorKind.Flags && node.ScrubMultiplier is { } multiplier && multiplier != 0 && IsNumber(node.ValueType)
-            && !node.ReadOnly && !node.IsCompromised;
+            && !node.ReadOnly && !node.IsEditLocked && !node.IsCompromised;
     }
 
     // Whether a row of this editor shows its objects as holding different values: only a row with a

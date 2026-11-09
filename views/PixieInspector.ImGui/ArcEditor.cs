@@ -71,11 +71,11 @@ internal sealed class ArcEditor(ImGuiRow row) : ImGuiEditor(row)
             var opened = Math.Min(Math.Abs(Wrap(angle - center)) * 2, Turn);
 
             if (Math.Abs(opened - width) > 1e-9)
-                Row.Write(() => spread.SetValue(Shown(spread, opened)));
+                Row.WriteValue(Shown(spread, opened), spread);
         }
         else if (Math.Abs(Wrap(angle - center)) > 1e-9)
         {
-            Row.Write(() => Node.SetValue(Shown(Node, angle)));
+            Row.WriteValue(Shown(Node, angle));
         }
     }
 
@@ -95,7 +95,7 @@ internal sealed class ArcEditor(ImGuiRow row) : ImGuiEditor(row)
         Gui.SetNextItemWidth(room);
 
         if (Gui.InputDouble(id, ref shown, 0, 0, "%g"))
-            Row.Write(() => node.SetValue(shown));
+            Row.WriteValue(shown, node);
 
         if (!string.IsNullOrEmpty(suffix))
         {

@@ -352,7 +352,10 @@ public sealed class CollectionNode : MemberNode
     private void ResetItem(ValueSource? source)
     {
         foreach (var node in this)
+        {
+            node.ResetEditing();
             node.Reset(source);
+        }
     }
 
     // The collection as a list, to reach a place by its index: an IList, or an array of one dimension.

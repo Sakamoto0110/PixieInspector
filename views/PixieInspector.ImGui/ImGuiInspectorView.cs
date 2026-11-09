@@ -14,7 +14,7 @@ namespace PixieInspector.ImGui;
 // leaves the inspector alone; when the inspector is disposed, the view empties (P7.13). An exception of a
 // subscriber goes up through the view, as one of the inspector's events does (3.11), with ImGui's Begin
 // and End pairs closed on the way, so a host that catches it can go on with the frame.
-public sealed class ImGuiInspectorView : IDisposable
+public sealed partial class ImGuiInspectorView : IDisposable
 {
     // The text of a value that cannot be edited, and of the summary of a group.
     internal static readonly Vector4 DisabledColor = new(0.6f, 0.6f, 0.6f, 1f);
@@ -95,6 +95,8 @@ public sealed class ImGuiInspectorView : IDisposable
         {
             if (Gui.Begin(Title))
                 Draw();
+            else
+                EndInteraction();
         }
         finally
         {
@@ -118,7 +120,10 @@ public sealed class ImGuiInspectorView : IDisposable
         const ImGuiTableFlags flags = ImGuiTableFlags.Resizable | ImGuiTableFlags.BordersInnerV | ImGuiTableFlags.RowBg;
 
         if (!Gui.BeginTable("##inspector", 2, flags))
+        {
+            FinishInactiveInteraction();
             return;
+        }
 
         try
         {
@@ -130,11 +135,13 @@ public sealed class ImGuiInspectorView : IDisposable
         finally
         {
             Gui.EndTable();
+            FinishInactiveInteraction();
         }
     }
 
     public void Dispose()
     {
+        EndInteraction(abandon: true);
         Detach();
         Release();
     }
@@ -212,7 +219,7 @@ public sealed class ImGuiInspectorView : IDisposable
 
                 if (!RowsByNode.TryGetValue(node, out var row) || !row.Fits())
                 {
-                    row = new ImGuiRow(node);
+                    row = new ImGuiRow(node, this);
                     RowsByNode[node] = row;
                 }
 
@@ -251,6 +258,7 @@ public sealed class ImGuiInspectorView : IDisposable
     // Lets the inspector go: no more events from it, and no rows.
     private void Release()
     {
+        EndInteraction(abandon: true);
         if (Inspector == null)
             return;
 

@@ -261,7 +261,7 @@ internal sealed class WpfRow : IDisposable
             return;
 
         var failure = Error ?? Fault ?? Describe(Node.Failure);
-        Editor.ShowState(Node.ReadOnly, !Node.IsCompromised, failure != null);
+        Editor.ShowState(Node.ReadOnly || Node.IsEditLocked, !Node.IsCompromised, failure != null);
         Editor.Control.ToolTip = failure ?? Node.Tooltip;
     }
 

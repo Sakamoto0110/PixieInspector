@@ -51,7 +51,7 @@ internal sealed class ChoiceEditor(ImGuiRow row) : ImGuiEditor(row)
             return;
 
         var choice = Choices[picked];
-        Row.Write(() => Node.SetValue(choice));
+        Row.WriteValue(choice);
     }
 
     // The value itself, or one that shows the same (the text "2" for the number 2). An Equals of the

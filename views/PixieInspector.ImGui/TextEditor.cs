@@ -58,7 +58,7 @@ internal class TextEditor(ImGuiRow row) : ImGuiEditor(row)
         if (typed == shown || typed == Refused)
             return;
 
-        if (Row.Write(() => Node.SetValue(typed)) && Node.Failure == null)
+        if (Row.WriteValue(typed) && Node.Failure == null)
         {
             Refused = null;
         }

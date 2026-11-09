@@ -27,11 +27,12 @@ accepted scope; they never extend it.
 ```text
 ## `PXI-TODO-001` — Parent title
 
-**Parent:** PXI-TODO-001
+**Parent:** link to PXI-TODO-001 in TODO.md
 
 - `PXI-TASK-001` — **Status:** open — Description.
 - `PXI-TASK-002` — **Status:** dropped — Description. **Reason:** why.
 ```
 
 Task statuses are `open`, `in-progress`, `done`, and `dropped`. When the parent
-completes, move the whole section to `docs/archive/`.
+completes, remove the section and retain only important details or evidence
+links in the roadmap closure. Git preserves the complete breakdown.

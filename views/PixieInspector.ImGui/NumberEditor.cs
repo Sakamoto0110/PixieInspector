@@ -50,7 +50,7 @@ internal sealed class NumberEditor(ImGuiRow row) : TextEditor(row)
         }
 
         if (edited != null)
-            Row.Write(() => Node.SetValue(edited));
+            Row.WriteValue(edited);
     }
 
     private static object? DrawNumber(ImGuiDataType dataType, object value) => value switch
