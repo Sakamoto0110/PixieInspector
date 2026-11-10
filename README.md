@@ -33,22 +33,27 @@ locks, gestures and the current view-parity and release limits.
 
 ## Layout
 
-| Path | What it is |
-|---|---|
-| `PixieInspector/` | The core: the inspector, its nodes, options, binding, and reports (`net10.0`) |
-| `views/` | One project per UI framework; see the module index for each contract |
-| `hosts/` | Sample applications, one per view and two consoles, and the objects they inspect |
-| `docs/` | Documentation |
+The [filesystem map](FILESYSTEM.md) locates the core, views, hosts, build and
+package wiring, documentation owners and retained local evidence.
 
 A consumer takes three assemblies: the core, one view, and PixieLib, which
 supplies the primitives.
 
 ## Documentation
 
+- [Filesystem and authority map](FILESYSTEM.md): where facts and work belong.
 - [`ROADMAP.md`](ROADMAP.md): direction, rationale, phase outcomes, criteria and guardrails.
 - [`TODO.md`](TODO.md): active work. [`TASKLIST.md`](TASKLIST.md): optional decomposition.
 - [`DEPENDENCIES.md`](DEPENDENCIES.md): every dependency, its status, and candidates.
 - [`docs/`](docs/README.md): documentation index, the module references, the
   development guide, proposals and [recorded outcomes](docs/history/README.md).
+
+The [workspace entry](../../.governance/workplaces/void-workplace/README.md) routes
+shared coordination; its [policy](../../.governance/workplaces/void-workplace/docs/governance/documentation-policy.md)
+governs shared constraints. Inspector retains its core/view contracts, packages,
+evidence, [PR rules](docs/governance/documentation-policy.md#commits) and
+[release procedure](docs/development.md#packages). Peer consumption
+does not transfer those responsibilities. Local documentation remains readable
+without the workspace; unavailable parent context is reported explicitly.
 
 MIT license; see [`LICENSE`](LICENSE).

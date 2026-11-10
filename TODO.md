@@ -40,11 +40,22 @@ entry may keep an explicit gate after promotion.
 
 ## Current promoted work
 
-None recorded since 2026-11-01. The documentation reorganization on 2026-11-06
-introduces no new product task or acceptance decision.
+No separately promoted Inspector-native parent is added by this migration.
+The inherited contribution below relocates existing task 249 without changing
+its conditional scope, status, clearance or acceptance.
 
 ## Completed outcomes
 
 Use the [history index](docs/history/README.md) for delivered work, original
 planning records and evidence limits. A locally completed implementation does
 not imply owner visual acceptance, publication or consumer adoption.
+
+<!-- BEGIN inherited-contributions -->
+## Inherited coordination contributions
+
+These routes introduce no independently promoted parent or duplicated parent status. The workspace owns shared outcomes and gates; the task list owns the following project contributions.
+
+- [PIXIE-TASK-249](TASKLIST.md#pixie-task-249) contributes to workspace PIXIE-TODO-060.
+
+[Pinned pre-transfer context](docs/workspace-reference.md) is nonauthoritative; current inherited block requirements must also be available.
+<!-- END inherited-contributions -->

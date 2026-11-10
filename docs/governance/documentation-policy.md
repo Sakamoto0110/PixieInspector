@@ -31,10 +31,23 @@ turn a partial derivation of the NekoLib model that Void Agent Workplace
 extracted. The derivation and every intentional difference are recorded in the
 [schema index](../schemas/README.md). Neither project is an authority over this
 repository. The workspace owns shared governance and external project profiles;
-Inspector retains its source, contracts, planning and evidence. Machine-local
+Inspector retains its source, contracts, product planning and evidence. Machine-local
 bindings route that configuration and are not durable authority.
 
 ## Authority
+
+The [shared documentation contract](../../../../.governance/DOCUMENTATION.md)
+and [Pixie workspace policy](../../../../.governance/workplaces/void-workplace/docs/governance/documentation-policy.md)
+are the adopted parent rules for shared constraints and coordination. Their
+precedence is limited to that scope. Inspector source, build wiring, core/view
+contracts, package responsibilities and evidence keep their owners below.
+A consumed peer contract governs the dependency it defines; consuming Lib or
+serving an Editor host does not make either project Inspector's parent.
+
+The [filesystem map](../../FILESYSTEM.md) provides the short ownership route.
+Inspector's branch-per-task, owner-merged PR and release procedures remain local
+specializations. Prepared documentation does not activate or rebind VAW.
+If the parent is absent, report unresolved context rather than waiving its rules.
 
 Every fact has exactly one owner. Other documents may summarize a fact and link
 to its owner; they must not maintain a competing mutable copy.
@@ -51,9 +64,11 @@ to its owner; they must not maintain a competing mutable copy.
 | Public API | The compiled assemblies of the core and the views; no accepted API baseline exists yet |
 | Module technical contract | `docs/modules/<boundary>/REFERENCE.md` |
 | Module routing and identity | `docs/modules/<boundary>/MANIFEST.md` |
-| Overall picture, rationale, phase outcomes, acceptance criteria, guardrails and freezes | Root `ROADMAP.md` |
-| Accepted work, status, ordering, dependencies and execution gates | Root `TODO.md` |
-| Decomposition of a promoted `TODO.md` entry into tasks | Root `TASKLIST.md` |
+| Inspector direction, rationale, phase outcomes, acceptance criteria, guardrails and freezes | Root `ROADMAP.md` |
+| Accepted Inspector work, contributions, status, ordering, dependencies and execution gates | Root `TODO.md` |
+| Optional decomposition of a promoted `TODO.md` entry into tasks | Root `TASKLIST.md` |
+| Shared coordination parents originating as Engine 053-056, 060 and 061 | Workspace `ROADMAP.md` and `TODO.md`; project planners link their contributions |
+| Project filesystem and ownership routes | Root `FILESYSTEM.md` |
 | Proposed designs and their originating rationale | One record per file under `docs/proposals/`; the index retains promotion/outcome states |
 | How to build, check, and commit a change | `docs/development.md`, under the commit rules below |
 | What a host shows and how to run it | `hosts/<host>/README.md` |
@@ -77,6 +92,16 @@ big picture, rationale, phases and acceptance criteria. TODO records accepted
 work needed to achieve those outcomes. TASKLIST decomposes only large items;
 children reference their parent and do not expand its scope. Owner instructions
 can authorize work; record the accepted scope without creating another queue.
+
+Shared coordination parents live in the
+[workspace ROADMAP](../../../../.governance/workplaces/void-workplace/ROADMAP.md)
+and [workspace TODO](../../../../.governance/workplaces/void-workplace/TODO.md).
+Inspector contribution entries link those parents while keeping local scope,
+dependencies and gates here. Pinned fallback excerpts in project planners are
+dated, non-authoritative context; only the workspace owner maintains current
+parent status. Fallback excerpts cannot authorize current coordination work when
+parent context is missing. A project TASKLIST remains optional, including for
+contributions.
 
 Completion preserves the roadmap block and its outcome in one document under
 `docs/history/`, linking evidence and incorporating only important nested details.
@@ -108,11 +133,16 @@ which package, at which version. `DEPENDENCIES.md` records why and the status.
 
 ## Unversioned working documentation: `.local/`
 
-`.local/` holds working documents that are deliberately not versioned and meant
-for quick use, such as `.local/decisions/open-questions.md`. Everything in it is
-safe to delete at any time. Questions are numbered so the owner can answer by
-number. After an answer, an item is either promoted, expanded into `TODO.md`,
-recorded in `ROADMAP.md`, turned into a proposal, or discarded.
+`.local/` holds unversioned working documents, retained raw evidence, package
+handoffs and coordination records. It is not a disposable directory by default.
+Before separately authorized cleanup, identify the owner, active consumers and
+retention requirements; an ignored path is not deletion permission. Promote
+durable conclusions to their versioned owner while retaining required evidence.
+
+Working questions, such as `.local/decisions/open-questions.md`, are numbered so
+the owner can answer by number. After an answer, an item is either promoted,
+expanded into `TODO.md`, recorded in `ROADMAP.md`, turned into a proposal, or
+explicitly discarded without deleting evidence that still supports a claim.
 
 `.local/` is never authority, and versioned documents never link into it,
 because a clone does not contain it. An answer that shapes code, structure, or
@@ -245,8 +275,8 @@ Document IDs and record IDs are stable and never renumbered or reused.
 Versioned and `.local/` documentation is written in English, except the body of
 an imported record. Documents must be understandable without a private prompt,
 a conversation, an external workspace, or knowledge of which person or tool
-wrote them. External procedures, including agent tooling, may add emphasis but
-do not own a format, path, authority rule, or acceptance criterion here.
+wrote them. External agent-tool procedures may add emphasis but do not override
+the adopted parent scope, local fact owners, or product acceptance criteria.
 
 ## Conflict handling
 
@@ -259,11 +289,13 @@ do not own a format, path, authority rule, or acceptance criterion here.
 
 ## Enforcement
 
-The workspace provides the generic PowerShell `scripts/checkdocs.ps1` checker.
-Inspector has no repository-local copy. When available, pass this repository
-through `-RepositoryPath`; pass a configuration that selects this project's
-metadata schema when validating metadata vocabulary. `-AdditionalPath` includes
-new documents without scanning unrelated ignored state.
+Use the generic PowerShell documentation checker with this repository as
+`-RepositoryPath` and an explicit configuration selecting its metadata schema
+and declared scopes. `-AdditionalPath` includes new documents without scanning
+unrelated ignored state. A standalone configuration may declare absent parent
+or peer scopes optional, reporting them as unavailable and not validated.
+Full workspace qualification requires all participating scopes and current
+catalog source hashes; an optional-scope pass is not that qualification.
 
 The checker validates declared structure, links/anchors, identifiers, metadata
 and work references. It does not establish implementation, visual, package or
