@@ -24,6 +24,20 @@ Choose a route by the question you need to answer. The
 [documentation policy](governance/documentation-policy.md#authority) names the
 owner of each fact; recorded evidence keeps its original candidate scope.
 
+## Workspace and repository routes
+
+| Route | Responsibility |
+|---|---|
+| [Inspector filesystem map](../FILESYSTEM.md) | Project areas, local owners and retained evidence |
+| [Workspace entry](../../../.governance/workplaces/void-workplace/README.md) | Parent navigation across the four independent projects |
+| [Shared documentation contract](../../../.governance/DOCUMENTATION.md) and [workspace policy](../../../.governance/workplaces/void-workplace/docs/governance/documentation-policy.md) | Shared constraints and coordination; Inspector technical contracts and local PR/release procedures retain their owners |
+| [Workspace ROADMAP](../../../.governance/workplaces/void-workplace/ROADMAP.md) and [TODO](../../../.governance/workplaces/void-workplace/TODO.md) | Current shared coordination parents, including transferred Engine 053-056, 060 and 061 |
+| [Workspace catalog](../../../.governance/workplaces/void-workplace/docs/catalog/README.md) | Discovery of canonical project documents, without duplicate mutable status |
+
+Inspector planners own its local work and contributions to shared parents.
+Pinned fallback excerpts are non-authoritative context when the parent is absent;
+they do not establish current workspace status or waive missing context.
+
 ## Use and integrate
 
 | Guide | Contents |
