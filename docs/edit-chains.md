@@ -22,6 +22,10 @@
 
 ## Host configuration
 
+Use PixieInspector 0.4.0 or later for `InspectorNode.ChainsWith` and manual
+UI locks. For the ImGui chain controls, install `PixieInspector.ImGui` at
+the same version as the core.
+
 The core remains independent of UI. A host declares semantically compatible
 numeric leaves explicitly; no naming convention links fields automatically.
 
@@ -141,6 +145,5 @@ have no chain controls or chained-edit gesture integration in this increment.
 Their existing user edits retain their prior setter path. Hosts can use the
 core explicit edit API independently; this is not a claim of full view parity.
 
-This is local source work. No version bump, package publication or consumer
-upgrade is implied. Engine consumption must explicitly select a matching local
-core/view build; changing this checkout does not update NuGet 0.3.0.
+Applications using 0.3.0 can upgrade their view package to 0.4.0 to bring in
+the matching core. Update any direct core reference to the same version.

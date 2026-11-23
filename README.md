@@ -30,6 +30,9 @@ contract; the [module index](docs/README.md#modules) routes each view.
 View capabilities can differ. The [flags guide](docs/flags-editor.md) and
 [edit-chain guide](docs/edit-chains.md) describe host integration, manual
 locks, gestures and the current view-parity and release limits.
+Version 0.4.0 adds `InspectorNode.ChainsWith` for linking numeric edits.
+The ImGui view provides chain and lock controls. The Avalonia, WinForms and
+WPF views honor locks set by the host.
 
 ## Layout
 
